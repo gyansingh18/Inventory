@@ -1,0 +1,23 @@
+<%= form_with(model: purchase_order) do |form| %>
+  <div class="field">
+    <%= form.label :supplier_id %>
+    <%= form.collection_select :supplier_id, Supplier.all, :id, :name, { prompt: true }, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_date %>
+    <%= form.date_field :order_date, class: 'form-control' %>
+  </div>
+
+  <h3>Items</h3>
+  <div id="purchase_order_items">
+    <%= form.fields_for :purchase_order_items do |item_form| %>
+      <%= render 'purchase_order_item_fields', f: item_form %>
+    <% end %>
+    <%= link_to_add_association 'Add Item', form, :purchase_order_items %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
+<% end %>

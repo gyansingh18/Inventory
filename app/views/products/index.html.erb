@@ -2,7 +2,8 @@
 <%= link_to 'Add new', new_product_path, class: 'btn btn-primary' %>
 <%= link_to 'New Sales Order', new_sales_order_path, class: 'btn btn-primary' %>
 
-<table class="table">
+<div class="container">
+<table class="table-container">
   <thead>
     <tr>
       <th>Name</th>
@@ -19,6 +20,12 @@
         <td><%= product.price %></td>
         <td><%= product.cateogory.name %></td>
         <td><%= product.inventory %></td>
+        <td><% if product.image.attached? %>
+            <%= image_tag product.image, width: 100 %>
+          <% else %>
+            <span class="text-muted">No image</span>
+          <% end %>
+        </td>
         <td>
         <%= link_to 'Delete',
                     product_path(product),
@@ -31,3 +38,4 @@
     <% end %>
   </tbody>
 </table>
+</div>

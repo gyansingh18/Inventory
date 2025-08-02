@@ -1,0 +1,4 @@
+<div class="navbar">
+  <%= link_to "Home", root_path %>
+  <%= link_to "Sign In", new_user_session_path unless user_signed_in? %>
+</div>

@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.1].define(version: 2025_08_02_164801) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,7 +58,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_164801) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.decimal "price"
-    t.integer "cateogory_id", null: false
+    t.bigint "cateogory_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "inventory"
@@ -63,8 +66,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_164801) do
   end
 
   create_table "purchase_order_items", force: :cascade do |t|
-    t.integer "purchase_order_id", null: false
-    t.integer "product_id", null: false
+    t.bigint "purchase_order_id", null: false
+    t.bigint "product_id", null: false
     t.integer "quantity"
     t.decimal "unit_price"
     t.datetime "created_at", null: false
@@ -74,7 +77,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_164801) do
   end
 
   create_table "purchase_orders", force: :cascade do |t|
-    t.integer "supplier_id", null: false
+    t.bigint "supplier_id", null: false
     t.date "order_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -82,8 +85,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_164801) do
   end
 
   create_table "sales_order_items", force: :cascade do |t|
-    t.integer "sales_order_id", null: false
-    t.integer "product_id", null: false
+    t.bigint "sales_order_id", null: false
+    t.bigint "product_id", null: false
     t.integer "quantity"
     t.decimal "unit_price"
     t.datetime "created_at", null: false
@@ -93,7 +96,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_08_02_164801) do
   end
 
   create_table "sales_orders", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.date "order_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

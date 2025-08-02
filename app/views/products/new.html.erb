@@ -13,8 +13,14 @@
 
   <div>
     <%= f.label :category %>
-    <%= f.collection_select :category_id, Cateogory.all, :id, :name %>
+    <%= f.collection_select :cateogory_id, Cateogory.all, :id, :name %>
   </div>
+
+ <div>
+    <%= f.label :inventory %>
+    <%= f.number_field :inventory %>
+  </div>
+
 
   <div>
     <%= f.submit "Save Product" %>

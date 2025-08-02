@@ -1,0 +1,16 @@
+<div class="product-show">
+  <h1><%= @product.name %></h1>
+
+  <div class="product-details">
+    <p><strong>Price:</strong> <%= @product.price %></p>
+    <p><strong>Inventory</strong><%= @product.inventory %></p>
+
+    <% if @product.cateogory %>
+      <p><strong>Category:</strong> <%= @product.cateogory.name %></p>
+    <% end %>
+
+  <div class="actions">
+    <%= link_to 'Edit', edit_product_path(@product), class: 'btn btn-primary' %>
+    <%= link_to 'Back to Products', products_path, class: 'btn btn-secondary' %>
+  </div>
+</div>

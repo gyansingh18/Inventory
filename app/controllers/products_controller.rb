@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+
 
   def index
     @products = Product.includes(:cateogory).all
@@ -17,6 +19,26 @@ class ProductsController < ApplicationController
     end
   end
 
+  def show
+    @product = Product.find_by(id: params[:id])
+
+    return redirect_to products_path, alert: 'Product not found' unless @product
+  end
+
+  def update
+    if @product.update(product_params)
+      redirect_to products_path, notice: 'Product was successfully updated.'
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path, status: :see_other
+  end
+
   private
 
   def set_product
@@ -24,6 +46,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :price, :category_id)
+    params.require(:product).permit(:name, :price, :cateogory_id, :inventory)
   end
 end

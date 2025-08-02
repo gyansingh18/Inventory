@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :cateogory
-
   has_many :purchase_order_items
   has_many :sales_order_items
+  validates :inventory, numericality: {greater_than_or_equal_to: 0}
 end

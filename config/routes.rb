@@ -3,10 +3,7 @@ Rails.application.routes.draw do
   resources :customers
   resources :products
   resources :suppliers
-
-
-
-  resources :sales_orders
+   resources :sales_orders
 
   root 'products#index'
 end

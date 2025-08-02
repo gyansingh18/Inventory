@@ -5,6 +5,10 @@
 #   gem "sqlite3"
 #
 
+production:
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+
 default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

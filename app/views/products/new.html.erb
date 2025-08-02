@@ -11,10 +11,12 @@
     <%= f.number_field :price %>
   </div>
 
-  <div>
-    <%= f.label :category %>
-    <%= f.collection_select :cateogory_id, Cateogory.all, :id, :name %>
-  </div>
+<div class="field">
+  <%= f.label :cateogory_id, "Cateogory" %>
+  <%= f.collection_select :cateogory_id, Cateogory.all, :id, :name,
+                         { prompt: "Select a cateogory" } %>
+    or <%= link_to "Add new cateogory", new_cateogory_path %>
+</div>
 
  <div>
     <%= f.label :inventory %>

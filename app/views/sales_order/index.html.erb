@@ -1,0 +1,26 @@
+<h1>Sales Orders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Order Date</th>
+      <th>Customer</th>
+      <th>Items</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @sales_orders.each do |order| %>
+      <tr>
+        <td><%= order.order_date %></td>
+        <td><%= order.customer.name %></td>
+        <td>
+          <% order.sales_order_items.each do |item| %>
+            <%= item.product.name %> (Qty: <%= item.quantity %> @ <%= number_to_currency(item.unit_price) %>)<br>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Order', new_sales_order_path %>

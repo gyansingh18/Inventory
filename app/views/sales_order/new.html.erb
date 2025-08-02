@@ -1,0 +1,32 @@
+<!-- app/views/sales_orders/new.html.erb -->
+<h1>New Sales Order</h1>
+
+<%= form_with(model: @sales_order) do |f| %>
+  <div>
+    <%= f.label :customer_id %>
+    <%= f.collection_select :customer_id, @customers, :id, :name, prompt: "Select Customer" %>
+  </div>
+
+  <div>
+    <%= f.label :order_date %>
+    <%= f.date_field :order_date %>
+  </div>
+
+  <h3>Items</h3>
+  <%= f.fields_for :sales_order_items do |item| %>
+    <div>
+      <%= item.label :product_id %>
+      <%= item.collection_select :product_id, @products, :id, :name, prompt: "Select Product" %>
+    </div>
+    <div>
+      <%= item.label :quantity %>
+      <%= item.number_field :quantity %>
+    </div>
+    <div>
+      <%= item.label :unit_price %>
+      <%= item.number_field :unit_price %>
+    </div>
+  <% end %>
+
+  <%= f.submit "Create Order" %>
+<% end %>

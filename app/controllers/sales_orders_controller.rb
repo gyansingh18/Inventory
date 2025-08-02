@@ -1,17 +1,17 @@
-class SalesOrderController < ApplicationController
+class SalesOrdersController < ApplicationController
 
   def new
-    @sales_orders = SalesOrder.new(order_date: Date.today)
-    @sales_orders.sales_order_items.build
+    @sales_order = SalesOrder.new(order_date: Date.today)
+    @sales_order.sales_order_items.build
     @customers = Customer.all
     @products = Product.all
   end
 
   def create
-    @salesorder = SalesOrder.new(sales_order_params)
+    @sales_order = SalesOrder.new(sales_order_params)
 
-    if @sales_orders.save
-      redirect_to sales_order_path, notice: 'Order Created'
+    if @sales_order.save
+      redirect_to sales_orders_path, notice: 'Order Created'
     else
       render :new
     end

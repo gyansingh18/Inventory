@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :products
   resources :cateogories, only: [:new, :create]
-  resources :customers
+  resources :sales_orders, only: [:index, :new, :create]
+  resources :customers, only: [:new, :create]
   resources :suppliers
-  resources :sales_orders
+
 
   root 'products#index'
 end

@@ -2,9 +2,11 @@
 <h1>New Sales Order</h1>
 
 <%= form_with(model: @sales_order) do |f| %>
+
   <div>
-    <%= f.label :customer_id %>
-    <%= f.collection_select :customer_id, @customers, :id, :name, prompt: "Select Customer" %>
+    <h3>Customer</h3>
+    <%= f.collection_select :customer_id, Customer.all, :id, :name, { prompt: "Select Customer" } %>
+      or <%= link_to "Add New Customer", new_customer_path, target: "_blank" %>
   </div>
 
   <div>
